@@ -1,0 +1,15 @@
+{
+  "name": "react-native-razorpay-latest",
+  "version": "0.0.1",
+  "main": "index.ts",
+  "types": "./types/**/*.d.ts",
+  "scripts": {
+    "build": "cd types && del * && tsc"
+  },
+  "dependencies": {},
+  "peerDependencies": {
+    "react": "*",
+    "react-native": "*",
+    "typescript": "*"
+  }
+}
