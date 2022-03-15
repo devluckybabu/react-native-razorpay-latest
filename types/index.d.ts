@@ -1,5 +1,5 @@
-import RazorpayConfig from "./lib/razorpay";
+import payment from "./lib/razorpay/payment";
 declare const Razorpay: {
-    config: typeof RazorpayConfig;
+    config: typeof payment;
 };
 export default Razorpay;
