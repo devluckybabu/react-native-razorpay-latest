@@ -8,12 +8,13 @@ const index_1 = __importDefault(require("./index"));
 class payment extends index_1.default {
     constructor() {
         super(...arguments);
-        this.startPayment = ({ amount, description, currency, order_id, name, user }) => {
+        this.startPayment = ({ amount, description, image, currency, order_id, name, user, color }) => {
             return react_native_razorpay_1.default.open({
                 key: this.merchant_id,
-                order_id, description,
+                image, order_id, description,
                 amount, currency,
-                name, frefill: user
+                name, prefill: user,
+                theme: { color }
             });
         };
     }
