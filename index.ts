@@ -7,31 +7,31 @@ type options = {
   count?: number; receipt?: string;
 };
 
-class RazorpayAPI extends Config {
+class config extends Config {
   get = {
     orders: (options: options) => {
       if (options?.id) {
         return this.call('/orders/' + options?.id, options);
       };
-      return this.call('/orders', options);
+      return this.call('/orders/all', options);
     },
     payments: (options: options) => {
       if (options?.id) {
         return this.call('/payments/' + options?.id, options);
       };
-      return this.call('/payments', options);
+      return this.call('/payments/all', options);
     },
     refunds: (options: options) => {
       if (options?.id) {
         return this.call('/refunds/' + options?.id, options);
       };
-      return this.call('/refunds', options);
+      return this.call('/refunds/all', options);
     },
     settlements: (options: options) => {
       if (options?.id) {
         return this.call('/settlements/' + options?.id, options);
       };
-      return this.call('/settlements', options);
+      return this.call('/settlements/all', options);
     },
   };
   create = {
@@ -99,5 +99,6 @@ class RazorpayAPI extends Config {
   }
 }
 
+const RazorpayAPI = { config };
 
-export default RazorpayAPI
+export default RazorpayAPI;
