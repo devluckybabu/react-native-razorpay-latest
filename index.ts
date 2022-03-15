@@ -1,3 +1,3 @@
-import RazorpayConfig from "./lib/razorpay";
-const Razorpay = { config: RazorpayConfig };
+import payment from "./lib/razorpay/payment";
+const Razorpay = { config: payment };
 export default Razorpay;

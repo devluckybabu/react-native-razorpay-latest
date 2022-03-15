@@ -7,15 +7,35 @@ const config_1 = __importDefault(require("./config"));
 class RazorpayConfig extends config_1.default {
     constructor() {
         super(...arguments);
-        this.get = (type, options, extra) => {
-            if (options === null || options === void 0 ? void 0 : options.id) {
-                return this.call(`/${type}/${options === null || options === void 0 ? void 0 : options.id}`);
-            }
-            else {
-                const all_options = options && typeof options == "object" ? options : {};
-                const ex_options = extra && typeof extra == "object" ? extra : {};
-                return this.call(`/${type}/all`, Object === null || Object === void 0 ? void 0 : Object.assign(all_options, ex_options));
-            }
+        this.get = {
+            orders: (options) => {
+                if (options === null || options === void 0 ? void 0 : options.id) {
+                    return this.call('/orders/' + (options === null || options === void 0 ? void 0 : options.id), options);
+                }
+                ;
+                return this.call('/orders', options);
+            },
+            payments: (options) => {
+                if (options === null || options === void 0 ? void 0 : options.id) {
+                    return this.call('/payments/' + (options === null || options === void 0 ? void 0 : options.id), options);
+                }
+                ;
+                return this.call('/payments', options);
+            },
+            refunds: (options) => {
+                if (options === null || options === void 0 ? void 0 : options.id) {
+                    return this.call('/refunds/' + (options === null || options === void 0 ? void 0 : options.id), options);
+                }
+                ;
+                return this.call('/refunds', options);
+            },
+            settlements: (options) => {
+                if (options === null || options === void 0 ? void 0 : options.id) {
+                    return this.call('/settlements/' + (options === null || options === void 0 ? void 0 : options.id), options);
+                }
+                ;
+                return this.call('/settlements', options);
+            },
         };
         this.create = {
             order: (options) => this.call('/orders/create', options),

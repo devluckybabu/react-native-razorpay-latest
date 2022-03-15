@@ -1,13 +1,19 @@
 import Config from "./config";
-declare class RazorpayConfig extends Config {
-    get: (type: "orders" | "payments" | "items" | "refunds" | "settlements", options?: {
-        id?: string | undefined;
-        from?: string | undefined;
-        to: string;
-        skip?: boolean | undefined;
-        count?: number | undefined;
-        receipt?: string | undefined;
-    } | undefined, extra?: object | undefined) => Promise<unknown>;
+declare type options = {
+    id?: string;
+    from?: string;
+    to: string;
+    skip?: boolean;
+    count?: number;
+    receipt?: string;
+};
+export default class RazorpayConfig extends Config {
+    get: {
+        orders: (options: options) => Promise<unknown>;
+        payments: (options: options) => Promise<unknown>;
+        refunds: (options: options) => Promise<unknown>;
+        settlements: (options: options) => Promise<unknown>;
+    };
     create: {
         order: (options: {
             amount: number;
@@ -65,4 +71,4 @@ declare class RazorpayConfig extends Config {
         create: (data: object) => Promise<unknown>;
     };
 }
-export default RazorpayConfig;
+export {};

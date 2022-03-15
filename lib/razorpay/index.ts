@@ -1,23 +1,38 @@
 import Config from "./config";
 
 
-class RazorpayConfig extends Config {
-  get = (
-    type: "orders" | "payments" | "items" | "refunds" | "settlements",
-    options?: {
-      id?: string; from?: string;
-      to: string; skip?: boolean;
-      count?: number; receipt?: string;
+type options = {
+  id?: string; from?: string;
+  to: string; skip?: boolean;
+  count?: number; receipt?: string;
+};
+
+export default class RazorpayConfig extends Config {
+  get = {
+    orders: (options: options) => {
+      if (options?.id) {
+        return this.call('/orders/' + options?.id, options);
+      };
+      return this.call('/orders', options);
     },
-    extra?: object
-  ) => {
-    if (options?.id) {
-      return this.call(`/${type}/${options?.id}`);
-    } else {
-      const all_options = options && typeof options == "object" ? options : {};
-      const ex_options = extra && typeof extra == "object" ? extra : {};
-      return this.call(`/${type}/all`, Object?.assign(all_options, ex_options));
-    }
+    payments: (options: options) => {
+      if (options?.id) {
+        return this.call('/payments/' + options?.id, options);
+      };
+      return this.call('/payments', options);
+    },
+    refunds: (options: options) => {
+      if (options?.id) {
+        return this.call('/refunds/' + options?.id, options);
+      };
+      return this.call('/refunds', options);
+    },
+    settlements: (options: options) => {
+      if (options?.id) {
+        return this.call('/settlements/' + options?.id, options);
+      };
+      return this.call('/settlements', options);
+    },
   };
   create = {
     order: (options: {
@@ -83,5 +98,3 @@ class RazorpayConfig extends Config {
     create: (data: object) => this.call('/settlements/create', data)
   }
 }
-
-export default RazorpayConfig;
