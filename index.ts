@@ -2,8 +2,8 @@
 import { NativeModules, NativeEventEmitter } from 'react-native';
 import { razorpay } from './types/lib/razorpay';
 import { decode, encode } from 'base-64';
-if (!globalThis.atob) globalThis.atob = encode;
-if (!globalThis.btoa) globalThis.btoa = decode;
+if (!globalThis.atob) globalThis.atob = decode;
+if (!globalThis.btoa) globalThis.btoa = encode;
 
 const razorpayEvents = new NativeEventEmitter(NativeModules.RazorpayEventEmitter);
 
