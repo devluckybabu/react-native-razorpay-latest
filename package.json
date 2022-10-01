@@ -1,0 +1,31 @@
+{
+  "name": "react-native-razorpay-latest",
+  "version": "0.1.1",
+  "description": "React Native wrapper for Razorpay",
+  "main": "index.ts",
+  "scripts": {
+    "build": "del types/* && tsc"
+  },
+  "peerDependencies": {
+    "react": "^17.0.0",
+    "react-native": "^0.66.4"
+  },
+  "keywords": [
+    "react-native",
+    "razorpay",
+    "payments"
+  ],
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.27.2",
+    "base-64": "^1.0.0",
+    "react-native": "^0.70.1"
+  },
+  "devDependencies": {
+    "@types/base-64": "^1.0.0",
+    "tslint": "^6.1.3",
+    "tslint-config-prettier": "^1.18.0",
+    "tslint-react": "^5.0.0",
+    "typescript": "^4.8.4"
+  }
+}
