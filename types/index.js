@@ -1,7 +1,7 @@
 'use strict';
 Object.defineProperty(exports, "__esModule", { value: true });
-const razorpay_1 = require("./lib/razorpay");
 const react_native_1 = require("react-native");
+const razorpay_1 = require("./lib/razorpay");
 const base_64_1 = require("base-64");
 if (!globalThis.atob)
     globalThis.atob = base_64_1.encode;
@@ -15,18 +15,18 @@ const removeSubscriptions = () => {
 };
 class Razorpay extends razorpay_1.razorpay {
     makePaymet(options, successCallback, errorCallback) {
-        return new Promise(function (resolve, reject) {
+        return new Promise((resolve, reject) => {
             razorpayEvents.addListener('Razorpay::PAYMENT_SUCCESS', (data) => {
                 let resolveFn = successCallback || resolve;
                 resolveFn(data);
                 removeSubscriptions();
             });
-            razorpayEvents.addListener('Razorpay::PAYMENT_ERROR', (data) => {
+            razorpayEvents.addListener('Razorpay::PAYMENT_ERROR', (error) => {
                 let rejectFn = errorCallback || reject;
-                rejectFn(data);
+                rejectFn(error);
                 removeSubscriptions();
             });
-            react_native_1.NativeModules.RNRazorpayCheckout.open(options);
+            react_native_1.NativeModules.RNRazorpayCheckout.open(Object.assign(Object.assign({}, options), { key: this.username }));
         });
     }
     onExternalWalletSelection(externalWalletCallback) {

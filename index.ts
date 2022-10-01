@@ -1,6 +1,6 @@
 'use strict';
-import { razorpay } from './types/lib/razorpay';
 import { NativeModules, NativeEventEmitter } from 'react-native';
+import { razorpay } from './types/lib/razorpay';
 import { decode, encode } from 'base-64';
 if (!globalThis.atob) globalThis.atob = encode;
 if (!globalThis.btoa) globalThis.btoa = decode;
@@ -16,8 +16,8 @@ const removeSubscriptions = () => {
 interface options {
   name?: string;
   image?: string;
-  amount: string;
   description?: string;
+  amount: string | number;
   prefill?: {
     name?: string;
     email?: string;
@@ -31,18 +31,18 @@ type callback = (data?: any) => void;
 
 class Razorpay extends razorpay {
   makePaymet(options: options, successCallback: callback, errorCallback: callback) {
-    return new Promise(function (resolve, reject) {
+    return new Promise((resolve, reject) => {
       razorpayEvents.addListener('Razorpay::PAYMENT_SUCCESS', (data: any) => {
         let resolveFn = successCallback || resolve;
         resolveFn(data);
         removeSubscriptions();
       });
-      razorpayEvents.addListener('Razorpay::PAYMENT_ERROR', (data: any) => {
+      razorpayEvents.addListener('Razorpay::PAYMENT_ERROR', (error: any) => {
         let rejectFn = errorCallback || reject;
-        rejectFn(data);
+        rejectFn(error);
         removeSubscriptions();
       });
-      NativeModules.RNRazorpayCheckout.open(options);
+      NativeModules.RNRazorpayCheckout.open({ ...options, key: this.username });
     });
   }
   onExternalWalletSelection(externalWalletCallback: callback) {

@@ -2,8 +2,8 @@ import { razorpay } from './lib/razorpay';
 interface options {
     name?: string;
     image?: string;
-    amount: string;
     description?: string;
+    amount: string | number;
     prefill?: {
         name?: string;
         email?: string;

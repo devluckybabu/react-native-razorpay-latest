@@ -1,5 +1,5 @@
 declare class API {
-    private username;
+    protected username: string;
     private password;
     constructor(auth: {
         key_id: string;

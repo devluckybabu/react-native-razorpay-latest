@@ -1,6 +1,6 @@
 {
   "name": "react-native-razorpay-latest",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "React Native wrapper for Razorpay",
   "main": "index.ts",
   "scripts": {
@@ -17,9 +17,8 @@
   ],
   "license": "ISC",
   "dependencies": {
-    "axios": "^0.27.2",
-    "base-64": "^1.0.0",
-    "react-native": "^0.70.1"
+    "axios": "^0.26.1",
+    "base-64": "^1.0.0"
   },
   "devDependencies": {
     "@types/base-64": "^1.0.0",
